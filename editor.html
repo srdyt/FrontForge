@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Code Editor</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+</head>
+
+<body>
+     
+
+  <header class="topbar">
+    <button id="hamburger" class="hamburger">☰</button>
+
+  <nav id="sidebar" class="sidebar">
+    <br><br>
+    <h2 class="sidebar-title">FrontForge</h2>
+    <ul>
+    <a href="home.html"><li>Home</li></a>
+    <a href="editor.html"><li class="active">Editor</li></a>
+    </ul>
+  </nav>
+
+  <div id="overlay" class="overlay"></div>
+    <div class="actions">
+      <span>Download: </span>
+      <button class="primary" id="downloadHtml">HTML</button>
+      <button class="primary" id="downloadCss">CSS</button>
+      <button class="primary" id="downloadJs">JS</button>
+      <button class="primary" id="downloadProject">Project</button>
+    </div>
+  </header>
+
+  <main class="workspace">
+
+    <section class="editor-panel">
+      <div class="panel-header">Code Editor</div>
+
+      <div class="editor-section">
+        <span class="label"><span class="editor-html">HTML</span></span>
+        <textarea id="htmlCode" placeholder="Write your HTML code here "></textarea>
+      </div>
+
+      <div class="editor-section">
+        <span class="label"><span class="editor-css">CSS</span></span>
+        <textarea  id="cssCode" placeholder="Write your CSS code here"></textarea>
+      </div>
+
+      <div class="editor-section">
+        <span class="label"><span class="editor-js">JS</span></span>
+        <textarea id="jsCode" placeholder="Write your JavaScript code here"></textarea>
+      </div>
+    </section>
+
+    <section class="preview-panel">
+      <div class="panel-header">Live Preview</div>
+      <iframe id="output"></iframe>
+    </section>
+
+  </main>
+  <script src="script.js"></script>
+
+</body>
+</html>

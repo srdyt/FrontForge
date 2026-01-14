@@ -1,0 +1,386 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: system-ui, 'Inter', sans-serif;
+}
+
+html, body {
+  height: 100%;
+  overflow-y: auto;
+}
+
+body {
+  background:
+    radial-gradient(1200px 600px at 50% 20%, rgba(120,140,255,0.15), transparent 60%),
+    linear-gradient(180deg, #1b1f26 0%, #0e1015 100%);
+  color: #e6e8ef;
+  line-height: 1.6;
+}
+
+.topbar {
+  height: 48px;
+  background: #1f232a;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid #2a2f38;
+}
+
+.actions button {
+  background: #2a2f38;
+  color: #ccc;
+  border: 1px solid #333;
+  padding: 6px 12px;
+  border-radius: 999px;
+  margin-left: 6px;
+}
+
+.actions .primary {
+  background: #7f8cff;
+  color: #0e1015;
+  border: none;
+  cursor: pointer;
+}
+
+.actions .primary:hover {
+  background: #9aa6ff;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  height: calc(100vh - 48px);
+}
+
+
+.editor-panel {
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #2a2f38;
+  background: #1b1f26;
+}
+
+.panel-header {
+  padding: 8px 12px;
+  font-size: 13px;
+  background: #1f232a;
+  border-bottom: 1px solid #2a2f38;
+}
+
+.editor-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid #2a2f38;
+}
+
+.editor-section .label {
+  font-size: 12px;
+  padding: 6px 12px;
+  background: #1f232a;
+  color: #7f8cff;
+}
+
+textarea {
+  flex: 1;
+  background: #0e1015;
+  border: none;
+  color: #d4d7e0;
+  padding: 12px;
+  resize: none;
+  font-family: monospace;
+  outline: none;
+}
+
+.preview-panel {
+  display: flex;
+  flex-direction: column;
+  background: #0e1015;
+}
+
+.preview-panel iframe {
+  flex: 1;
+  background: white;
+  border: none;
+  margin: 12px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.hamburger {
+  font-size: 22px;
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -260px;
+  width: 260px;
+  height: 100vh;
+  background: #1b1f26;
+  color: white;
+  padding: 20px;
+  transition: left 0.3s ease;
+  z-index: 1000;
+  border-right: 1px solid #2a2f38;
+}
+
+.sidebar.open {
+  left: 0;
+}
+
+.sidebar-title {
+  margin-bottom: 20px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar li {
+  padding: 12px 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  opacity: 0.85;
+  margin-bottom: 4px;
+}
+
+.sidebar li:hover,
+.sidebar li.active {
+  background: #2a2f38;
+  opacity: 1;
+}
+
+.sidebar a {
+  text-decoration: none;
+  color: white;
+}
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 900;
+}
+
+.overlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.section {
+  min-height: auto;
+  padding: 140px 12%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 40px;
+}
+
+.hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(120,140,255,0.18), transparent 60%);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero * {
+  position: relative;
+  z-index: 1;
+}
+
+.hero .subtitle {
+  letter-spacing: 4px;
+  font-size: 12px;
+  color: #9aa1b3;
+}
+
+.hero .logo {
+  font-size: 80px;
+  letter-spacing: 6px;
+}
+
+.hero .logo span {
+  color: #e6ff47;
+}
+
+.hero .tagline {
+  font-size: 14px;
+  color: #9aa1b3;
+}
+
+.features .feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin: 50px 0;
+}
+
+.feature-card {
+  background: rgba(20, 23, 30, 0.9);
+  padding: 40px 30px;
+  border-radius: 16px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+}
+
+.feature-card h3 {
+  font-size: 22px;
+  margin-bottom: 10px;
+  color: #7f8cff;
+}
+
+.usecase .use-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+
+.use-card {
+  background: rgba(20, 23, 30, 0.9);
+  padding: 32px;
+  border-radius: 14px;
+  text-align: left;
+}
+
+.use-card h4 {
+  color: #7f8cff;
+  margin-bottom: 10px;
+}
+
+.desc {
+  max-width: 760px;
+  margin: 0 auto;
+  font-size: 16px;
+  color: #b9c0d1;
+}
+
+.btn {
+  padding: 14px 36px;
+  border: 1px solid #7f8cff;
+  background: transparent;
+  color: #7f8cff;
+  cursor: pointer;
+  letter-spacing: 2px;
+  transition: 0.3s ease;
+}
+
+.btn:hover {
+  background: #7f8cff;
+  color: #0e1015;
+  box-shadow: 0 0 20px rgba(127,140,255,0.4);
+}
+
+.contact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  text-align: left;
+  align-items: center;
+}
+
+.contact-left h2 {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.contact-left p {
+  color: #b9c0d1;
+  line-height: 1.8;
+}
+
+.contact-right h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.contact form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.contact form textarea {
+  grid-column: span 2;
+  height: 140px;
+}
+
+.contact form .btn {
+  grid-column: span 2;
+  justify-self: flex-end;
+}
+
+.contact form input,
+.contact form textarea {
+  background: rgba(20, 23, 30, 0.9);
+  border: 1px solid #2a2f38;
+  color: #fff;
+  border-radius: 10px;
+  padding: 14px;
+  font-size: 14px;
+}
+
+.footer {
+  text-align: center;
+  padding: 60px 0 40px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: #9aa1b3;
+}
+
+.editor-html { color: #ff5555; }
+.editor-css { color: #4fc3f7; }
+.editor-js  { color: #ffee58; }
+
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+
+  .features .feature-grid,
+  .usecase .use-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    text-align: center;
+  }
+
+  .contact form {
+    grid-template-columns: 1fr;
+  }
+
+  .contact form textarea,
+  .contact form .btn {
+    grid-column: span 1;
+  }
+}

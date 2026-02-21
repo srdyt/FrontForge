@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Doto:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -67,6 +70,9 @@ body {
   font-size: 13px;
   background: #1f232a;
   border-bottom: 1px solid #2a2f38;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .editor-section {
@@ -138,7 +144,6 @@ textarea {
 .sidebar-title {
   margin-bottom: 20px;
   font-size: 18px;
-  letter-spacing: 1px;
 }
 
 .sidebar ul {
@@ -218,11 +223,18 @@ textarea {
 
 .hero .logo {
   font-size: 80px;
-  letter-spacing: 6px;
+  letter-spacing: -2px;
+  font-family: "New Rocker", system-ui;
+  font-weight: 400;
+  font-style: normal;
 }
 
 .hero .logo span {
   color: #e6ff47;
+  font-family: "Jacquard 24", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 105px;
 }
 
 .hero .tagline {
@@ -383,4 +395,187 @@ textarea {
   .contact form .btn {
     grid-column: span 1;
   }
+}
+
+.fullscreen-button {
+  border: none;
+  background: transparent;
+  color: #7f8cff;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: 0.3s ease;
+  display: flex;
+  align-items: center;
+}
+
+.fullscreen-button:hover {
+  color: #9aa6ff;
+}
+
+.panel-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Fullscreen workspace */
+.workspace.fullscreen {
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  background: #0f0f0f;
+}
+
+/* Hide panels conditionally */
+.workspace.show-code .preview-panel {
+  display: none;
+}
+
+.workspace.show-output .editor-panel {
+  display: none;
+}
+
+/* Slider UI */
+.view-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.view-toggle.hidden {
+  display: none;
+}
+
+#viewSlider {
+  width: 50px;
+  cursor: pointer;
+}
+
+.toggle-label {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+/* =========================
+   PAGE LAYOUT
+========================= */
+.auth-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+
+/* =========================
+   MAIN CARD
+========================= */
+.auth-container {
+  width: 350px;
+  padding: 25px;
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 20px;
+}
+
+
+/* =========================
+   TITLE
+========================= */
+.auth-title {
+  margin-bottom: 15px;
+}
+
+
+/* =========================
+   FORM
+========================= */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+/* =========================
+   INPUTS
+========================= */
+.auth-input {
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+.auth-button {
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  background-color: rgb(214, 214, 0);
+}
+
+
+/* =========================
+   AUTH LINKS (Login/Register)
+========================= */
+.auth-links {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;   /* stack links vertically */
+  gap: 8px;
+  align-items: center;
+}
+
+.auth-link {
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 10px;
+}
+
+.auth-link:visited{
+  color: #fffff1;
+}
+
+.auth-link:hover{
+  color:white ;
+  text-decoration: underline;
+}
+
+.error-box{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 25px;
+  gap: 10px;
+}
+
+.error-code{
+  font-size: 150px;
+  font-family: "Doto", sans-serif;
+}
+
+.error-message{
+font-size: 36px;
+}
+
+.error-button{
+  color: black;
+  background-color: white;
+  border: 1px solid black;
+  border-radius: 25px;
+  padding: 25px;
+  text-decoration: none;
+}
+
+.error-button:visited{
+  color: black;
+}
+
+.error-buttons{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 }

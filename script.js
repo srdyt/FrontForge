@@ -58,5 +58,42 @@ if (hamburger && sidebar && overlay) {
     sidebar.classList.remove("open");
     overlay.classList.remove("show");
   });
+
+  
 }
+
+const fullscreenBtn = document.querySelector('.fullscreen-button');
+const workspace = document.querySelector('.workspace');
+const slider = document.getElementById('viewSlider');
+const toggle = document.getElementById('viewToggle');
+const label = document.querySelector('.toggle-label');
+
+let isFullscreen = false;
+
+fullscreenBtn.addEventListener('click', () => {
+  isFullscreen = !isFullscreen;
+
+  workspace.classList.toggle('fullscreen', isFullscreen);
+  toggle.classList.toggle('hidden', !isFullscreen);
+
+  // Default to output view
+  workspace.classList.add('show-output');
+  workspace.classList.remove('show-code');
+
+  slider.value = 1;
+  label.textContent = 'Output';
+});
+
+slider.addEventListener('input', () => {
+  if (slider.value === "0") {
+    workspace.classList.add('show-code');
+    workspace.classList.remove('show-output');
+    label.textContent = 'Code';
+  } else {
+    workspace.classList.add('show-output');
+    workspace.classList.remove('show-code');
+    label.textContent = 'Output';
+  }
+});
+
 

@@ -1,3 +1,4 @@
+<?php include "auth.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,13 +6,12 @@
   <title>Code Editor</title>
 
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=fullscreen" />
 </head>
 
 <body>
-     
-
+  
   <header class="topbar">
     <button id="hamburger" class="hamburger">☰</button>
 
@@ -20,7 +20,7 @@
     <h2 class="sidebar-title">FrontForge</h2>
     <ul>
     <a href="home.html"><li>Home</li></a>
-    <a href="editor.html"><li class="active">Editor</li></a>
+    <a href="editor.php"><li class="active">Editor</li></a>
     </ul>
   </nav>
 
@@ -31,6 +31,7 @@
       <button class="primary" id="downloadCss">CSS</button>
       <button class="primary" id="downloadJs">JS</button>
       <button class="primary" id="downloadProject">Project</button>
+      <a href="logout.php">Logout</a>
     </div>
   </header>
 
@@ -60,6 +61,10 @@
     <span class="panel-title">Live Preview</span>
 
     <div class="panel-actions">
+      <div class="view-toggle hidden" id="viewToggle">
+  <input type="range" min="0" max="1" step="1" value="1" id="viewSlider">
+  <span class="toggle-label">Output</span>
+      </div>
       <button class="fullscreen-button" aria-label="Fullscreen preview">
         <span class="material-symbols-outlined">fullscreen</span>
       </button>

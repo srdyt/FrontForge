@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </form>
 
 <div class="auth-links">
-<a href="login.html" class="auth-link">
+<a href="login.php" class="auth-link">
 Already have an account? Login!
 </a>
 </div>

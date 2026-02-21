@@ -51,6 +51,14 @@ body {
   background: #9aa6ff;
 }
 
+.actions .primary a{
+  text-decoration: none;
+}
+
+.actions .primary a:visited{
+  color: #0e1015;
+}
+
 .workspace {
   display: grid;
   grid-template-columns: 50% 50%;
@@ -186,7 +194,7 @@ textarea {
 
 .section {
   min-height: auto;
-  padding: 140px 12%;
+  padding: 60px 12%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -204,7 +212,6 @@ textarea {
   position: absolute;
   width: 700px;
   height: 700px;
-  background: radial-gradient(circle, rgba(120,140,255,0.18), transparent 60%);
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
@@ -553,7 +560,11 @@ textarea {
 }
 
 .error-code{
-  font-size: 150px;
+    font-size:300px;
+    font-weight:bold;
+    color:rgba(255,255,255,0.08);
+    letter-spacing:30px;
+    user-select:none;
   font-family: "Doto", sans-serif;
 }
 
@@ -582,3 +593,4 @@ font-size: 36px;
   gap: 10px;
   justify-content: center;
 }
+

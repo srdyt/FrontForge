@@ -1,6 +1,5 @@
 <?php
-// Default values
-$code = $_GET['code'] ?? "Error";
+$code = $_GET['code'] ?? "404";
 $message = $_GET['message'] ?? "Something went wrong. Please try again.";
 ?>
 
@@ -22,9 +21,9 @@ $message = $_GET['message'] ?? "Something went wrong. Please try again.";
     </div>
 
 <div class="error-buttons">
-    <a href="home.html" class="error-button">Home</a>
+    <a href="home.php" class="error-button">Home</a>
     <br><br>
-    <a href="login.html" class="error-button">Login</a>
+    <a href="login.php" class="error-button">Login</a>
 </div>
 </div>
 

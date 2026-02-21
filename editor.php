@@ -16,10 +16,9 @@
     <button id="hamburger" class="hamburger">☰</button>
 
   <nav id="sidebar" class="sidebar">
-    <br><br>
     <h2 class="sidebar-title">FrontForge</h2>
     <ul>
-    <a href="home.html"><li>Home</li></a>
+    <a href="home.php"><li>Home</li></a>
     <a href="editor.php"><li class="active">Editor</li></a>
     </ul>
   </nav>
@@ -31,7 +30,7 @@
       <button class="primary" id="downloadCss">CSS</button>
       <button class="primary" id="downloadJs">JS</button>
       <button class="primary" id="downloadProject">Project</button>
-      <a href="logout.php">Logout</a>
+      <button class="primary" id="Logout"><a href="logout.php">Logout</a></button>
     </div>
   </header>
 

@@ -1,3 +1,7 @@
+<?php
+session_start();
+$loggedIn = isset($_SESSION["user_id"]);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,16 +21,42 @@
     <button id="hamburger" class="hamburger">☰</button>
 
   <nav id="sidebar" class="sidebar">
-    <br><br>
     <h2 class="sidebar-title">FrontForge</h2>
     <ul>
-      <a href="home.html"></a><li class="active">Home</li></a>
+      <a href="home.php"></a><li class="active">Home</li></a>
       <a href="editor.php"><li>Editor</li></a>
     </ul>
   </nav>
-  <div id="overlay" class="overlay">
-  </div>
-    
+
+      <div id="overlay" class="overlay"></div>
+    <div class="actions">
+      <div class="actions">
+
+<?php if ($loggedIn): ?>
+
+    <span class="welcome">
+        Hi, <?php echo htmlspecialchars($_SESSION["username"]); ?>
+    </span>
+
+    <button class="primary">
+        <a href="logout.php">Logout</a>
+    </button>
+
+<?php else: ?>
+
+    <button class="primary">
+        <a href="login.php">Login</a>
+    </button>
+
+    <button class="primary">
+        <a href="register.php">Sign Up</a>
+    </button>
+
+<?php endif; ?>
+
+</div>
+    </div>
+
 </header>
 
  <section class="section hero">

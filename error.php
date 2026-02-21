@@ -22,9 +22,9 @@ $message = $_GET['message'] ?? "Something went wrong. Please try again.";
     </div>
 
 <div class="error-buttons">
-    <a href="login.html" class="error-button">Go to Login</a>
+    <a href="home.html" class="error-button">Home</a>
     <br><br>
-    <a href="register.php" class="error-button">Try Register Again</a>
+    <a href="login.html" class="error-button">Login</a>
 </div>
 </div>
 

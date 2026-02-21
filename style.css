@@ -566,7 +566,9 @@ font-size: 36px;
   background-color: white;
   border: 1px solid black;
   border-radius: 25px;
-  padding: 25px;
+  padding: 15px;
+  padding-left: 45px;
+  padding-right: 45px;
   text-decoration: none;
 }
 
@@ -578,4 +580,5 @@ font-size: 36px;
   display: flex;
   flex-direction: row;
   gap: 10px;
+  justify-content: center;
 }

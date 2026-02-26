@@ -53,10 +53,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body class="auth-page">
-
+<h1 class="logo">Front<span>Forge</span></h1>
 <div class="auth-container">
-
-<h1 class="auth-title">Register</h1>
 
 <?php if ($error): ?>
     <p style="color:red;"><?php echo $error; ?></p>
@@ -70,32 +68,33 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <input name="name" placeholder="Full Name"
        value="<?php echo $_POST['name'] ?? ''; ?>"
-       required class="auth-input">
+       required class="auth-input" autocomplete="off">
 
 <input name="username" placeholder="Username"
        value="<?php echo $_POST['username'] ?? ''; ?>"
-       required class="auth-input">
+       required class="auth-input" autocomplete="off">
 
 <input name="email" placeholder="Email"
        value="<?php echo $_POST['email'] ?? ''; ?>"
-       required class="auth-input">
+       required class="auth-input" autocomplete="off">
 
 <input name="password" type="password"
-       placeholder="Password" required class="auth-input">
+       placeholder="Password" required class="auth-input" autocomplete="off">
 
 <input name="confirm_password" type="password"
-       placeholder="Confirm Password" required class="auth-input">
+       placeholder="Confirm Password" required class="auth-input" autocomplete="off">
 
 <button class="auth-button">Register</button>
 
 </form>
 
+</div>
 <div class="auth-links">
 <a href="login.php" class="auth-link">
 Already have an account? Login!
 </a>
 </div>
 
-</div>
+
 </body>
 </html>

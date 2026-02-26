@@ -1,3 +1,10 @@
+/* ===============================
+   SAFE ELEMENT HELPER
+================================ */
+function get(id){
+    return document.getElementById(id);
+}
+
 const htmlCode = document.getElementById("htmlCode");
 const cssCode  = document.getElementById("cssCode");
 const jsCode   = document.getElementById("jsCode");
@@ -61,39 +68,155 @@ if (hamburger && sidebar && overlay) {
 
   
 }
+/* ===============================
+   BOILERPLATE TRIGGERS
+================================ */
 
-const fullscreenBtn = document.querySelector('.fullscreen-button');
-const workspace = document.querySelector('.workspace');
-const slider = document.getElementById('viewSlider');
-const toggle = document.getElementById('viewToggle');
-const label = document.querySelector('.toggle-label');
+const templates = {
+html: `<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>FrontForge Project</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-let isFullscreen = false;
+<h1>Hello FrontForge 🚀</h1>
 
-fullscreenBtn.addEventListener('click', () => {
-  isFullscreen = !isFullscreen;
+<script src="script.js"></script>
+</body>
+</html>`,
 
-  workspace.classList.toggle('fullscreen', isFullscreen);
-  toggle.classList.toggle('hidden', !isFullscreen);
+css: `*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
 
-  // Default to output view
-  workspace.classList.add('show-output');
-  workspace.classList.remove('show-code');
+body{
+font-family:system-ui;
+background:#111;
+color:white;
+}`,
 
-  slider.value = 1;
-  label.textContent = 'Output';
+js: `document.addEventListener("DOMContentLoaded",()=>{
+console.log("FrontForge Ready 🚀");
+});`
+};
+
+function insertTemplate(textarea, template){
+    textarea.value = template;
+    textarea.focus();
+    textarea.selectionStart = textarea.selectionEnd = textarea.value.length;
+}
+
+function setupEditor(id, trigger, template){
+    const textarea = get(id);
+    if (!textarea) return;
+
+    textarea.addEventListener("input", function(){
+        if(this.value.trim() === trigger){
+            insertTemplate(this, template);
+        }
+    });
+
+    textarea.addEventListener("keydown", function(e){
+        if(e.key === "Tab" && this.value.trim() === trigger){
+            e.preventDefault();
+            insertTemplate(this, template);
+        }
+    });
+}
+
+setupEditor("htmlCode", "!html", templates.html);
+setupEditor("cssCode", "!css", templates.css);
+setupEditor("jsCode", "!js", templates.js);
+
+
+/* ===============================
+   COPY EMAIL
+================================ */
+
+
+
+function copyText(text){
+    navigator.clipboard.writeText(text)
+        .then(showCopiedToast)
+        .catch(()=>{
+            const temp = document.createElement("textarea");
+            temp.value = text;
+            document.body.appendChild(temp);
+            temp.select();
+            document.execCommand("copy");
+            document.body.removeChild(temp);
+            showCopiedToast();
+        });
+}
+
+
+
+
+function toggleFollow(userId){
+    fetch("follow.php",{
+        method:"POST",
+        headers:{ "Content-Type":"application/x-www-form-urlencoded"},
+        body:"user_id="+userId
+    })
+    .then(()=>location.reload());
+}
+
+new QRCode(document.getElementById("qr"), {
+    text: "<?= $profileURL ?>",
+    width: 150,
+    height: 150
 });
 
-slider.addEventListener('input', () => {
-  if (slider.value === "0") {
-    workspace.classList.add('show-code');
-    workspace.classList.remove('show-output');
-    label.textContent = 'Code';
-  } else {
-    workspace.classList.add('show-output');
-    workspace.classList.remove('show-code');
-    label.textContent = 'Output';
-  }
-});
+function shareProfile(){
 
+    const url = window.location.href;
+    const text = "Check out this profile 👀";
+
+    // Mobile native share
+    if(navigator.share){
+        navigator.share({
+            title: document.title,
+            text: text,
+            url: url
+        });
+    }
+    // Desktop fallback → copy link
+    else{
+        navigator.clipboard.writeText(url);
+        alert("Profile link copied!");
+    }
+}
+
+
+function showTick(message="Done"){
+
+    const toast = document.getElementById("tickToast");
+    const text  = document.getElementById("tickToastText");
+
+    text.innerText = message;
+
+    // restart animation
+    toast.classList.remove("show");
+    void toast.offsetWidth;
+
+    toast.classList.add("show");
+
+    setTimeout(()=>{
+        toast.classList.remove("show");
+    },2200);
+}
+
+
+window.onload = () => {
+    const params = new URLSearchParams(window.location.search);
+
+    if(params.get("login") === "success"){
+        showTick("Login successful");
+    }
+};
 

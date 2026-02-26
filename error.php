@@ -1,6 +1,6 @@
 <?php
 $code = $_GET['code'] ?? "404";
-$message = $_GET['message'] ?? "Something went wrong. Please try again.";
+$message = $_GET['message'] ?? "This page does not exist.";
 ?>
 
 <!DOCTYPE html>

@@ -1,7 +1,9 @@
 <?php
 session_start();
 $loggedIn = isset($_SESSION["user_id"]);
-?>
+$page = basename($_SERVER['PHP_SELF']);
+ ?>
+ 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,15 +22,35 @@ $loggedIn = isset($_SESSION["user_id"]);
    <header class="topbar">
     <button id="hamburger" class="hamburger">☰</button>
 
-  <nav id="sidebar" class="sidebar">
-    <h2 class="sidebar-title">FrontForge</h2>
-    <ul>
-      <a href="home.php"></a><li class="active">Home</li></a>
-      <a href="editor.php"><li>Editor</li></a>
-    </ul>
-  </nav>
+<div class="sidebar" id="sidebar">
+    <div>
+        <h3 class="sidebar-title">FrontForge</h3>
+        <ul>
+            <a href="home.php"><li class="active">Home</li></a>
+            <a href="editor.php"><li>Editor</li></a>
+            <a href="user_search.php"><li>Search Users</li></a>
+        </ul>
+    </div>
+
+    
+
+    <div class="sidebar-bottom">
+        <a href="user_details.php">
+            <ul class="active"><?= htmlspecialchars($_SESSION["username"]) ?></ul>
+        </a>
+    </div>
+</div>
+
+
 
       <div id="overlay" class="overlay"></div>
+        <div class="topbar-center">
+        <a href="home.php" class="quick-icon <?= $page=='home.php' ? 'active' : '' ?>"><img src="offline/home.png"></a>
+        <a href="projects.php" class="quick-icon <?= $page=='projects.php' ? 'active' : '' ?>"><img src="offline/files.png"></a>
+        <a href="teams.php" class="quick-icon <?= $page=='teams.php' ? 'active' : '' ?>"><img src="offline/group.png"></a>
+        <a href="editor.php" class="quick-icon <?= $page=='editor.php' ? 'active' : '' ?>"><img src="offline/code.png"></a>
+        <a href="user_details.php" class="quick-icon <?= $page=='user_details.php' ? 'active' : '' ?>"><img src="offline/person.png"></a>
+    </div>
     <div class="actions">
       <div class="actions">
 
@@ -58,7 +80,11 @@ $loggedIn = isset($_SESSION["user_id"]);
     </div>
 
 </header>
-
+<?php if(isset($_SESSION["login_success"])): ?>
+<script>
+window.onload = () => showTick("Login successful ");
+</script>
+<?php unset($_SESSION["login_success"]); endif; ?>
  <section class="section hero">
     <p class="subtitle">A MODERN WEB TOOL</p>
     <h1 class="logo">Front<span>Forge</span></h1>
@@ -122,11 +148,11 @@ $loggedIn = isset($_SESSION["user_id"]);
 
     <div class="contact-right">
       <h2>FEEDBACK</h2>
-      <form>
-        <input type="text" placeholder="Your Name" />
-        <input type="email" placeholder="Your Email" />
-        <textarea placeholder="Your Message"></textarea>
-        <button class="btn">SEND</button>
+      <form action="send_feedback.php" method="POST">
+        <input type="text" name="name" placeholder="Your Name" autocomplete="off">
+<input type="email" name="email" placeholder="Your Email" autocomplete="off">
+<textarea name="message" placeholder="Your Message"></textarea>
+        <button type="submit" class="btn">SEND</button>
       </form>
     </div>
   </section>
@@ -134,7 +160,29 @@ $loggedIn = isset($_SESSION["user_id"]);
   <footer class="footer">
     Swarnava Vibhor Shayujyo
   </footer>
+<div id="tickToast" class="tick-toast">
+    <svg class="toast-tick" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="24"/>
+        <path d="M14 27 L22 35 L38 18"/>
+    </svg>
+    <span id="tickToastText">Logged in successfully</span>
+</div>
 
 <script src="script.js"></script>
+<script>
+function showTick(message){
+    const toast = document.getElementById("tickToast");
+    const text  = document.getElementById("tickToastText");
+
+    text.innerText = message;
+
+    toast.classList.remove("show");
+    void toast.offsetWidth; // restart animation
+    toast.classList.add("show");
+
+    setTimeout(()=>toast.classList.remove("show"),2500);
+}
+
+</script>
 </body>
 </html>

@@ -14,8 +14,13 @@ $stmt->bind_param("sss", $name, $email, $message);
 
 if ($stmt->execute()) {
     $msg = urlencode("We got your feedback");
-    header("Location: error.php?code=505&message=$msg");
+    if ($stmt->execute()) {
+    header("Location: home.php?success=feedback");
     exit();
+} else {
+    header("Location: home.php?error=feedback");
+    exit();
+}
 } else {
     echo "Error: " . $stmt->error;
 }

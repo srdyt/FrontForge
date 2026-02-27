@@ -25,32 +25,42 @@ $page = basename($_SERVER['PHP_SELF']);
 <div class="sidebar" id="sidebar">
     <div>
         <h3 class="sidebar-title">FrontForge</h3>
-        <ul>
-            <a href="home.php"><li class="active">Home</li></a>
-            <a href="editor.php"><li>Editor</li></a>
-            <a href="user_search.php"><li>Search Users</li></a>
-        </ul>
+       <ul>
+<?php if ($loggedIn): ?>
+    <a href="home.php"><li class="<?= $page=='home.php'?'active':'' ?>">Home</li></a>
+    <a href="editor.php"><li class="<?= $page=='editor.php'?'active':'' ?>">Editor</li></a>
+    <a href="user_search.php"><li class="<?= $page=='user_search.php'?'active':'' ?>">Search Users</li></a>
+<?php else: ?>
+    <a href="home.php"><li class="<?= $page=='home.php'?'active':'' ?>">Home</li></a>
+    <a href="login.php"><li class="<?= $page=='login.php'?'active':'' ?>">Login</li></a>
+    <a href="register.php"><li class="<?= $page=='register.php'?'active':'' ?>">Register</li></a>
+<?php endif; ?>
+</ul>
     </div>
 
     
 
-    <div class="sidebar-bottom">
-        <a href="user_details.php">
-            <ul class="active"><?= htmlspecialchars($_SESSION["username"]) ?></ul>
-        </a>
-    </div>
+   <div class="sidebar-bottom">
+<?php if ($loggedIn): ?>
+    <a href="user_details.php">
+        <ul><?= htmlspecialchars($_SESSION["username"]) ?></ul>
+    </a>
+<?php endif; ?>
+</div>
 </div>
 
 
 
       <div id="overlay" class="overlay"></div>
-        <div class="topbar-center">
-        <a href="home.php" class="quick-icon <?= $page=='home.php' ? 'active' : '' ?>"><img src="offline/home.png"></a>
-        <a href="projects.php" class="quick-icon <?= $page=='projects.php' ? 'active' : '' ?>"><img src="offline/files.png"></a>
-        <a href="teams.php" class="quick-icon <?= $page=='teams.php' ? 'active' : '' ?>"><img src="offline/group.png"></a>
-        <a href="editor.php" class="quick-icon <?= $page=='editor.php' ? 'active' : '' ?>"><img src="offline/code.png"></a>
-        <a href="user_details.php" class="quick-icon <?= $page=='user_details.php' ? 'active' : '' ?>"><img src="offline/person.png"></a>
-    </div>
+        <?php if ($loggedIn): ?>
+<div class="topbar-center">
+    <a href="home.php" class="quick-icon <?= $page=='home.php' ? 'active' : '' ?>"><img src="offline/home.png"></a>
+    <a href="projects.php" class="quick-icon <?= $page=='projects.php' ? 'active' : '' ?>"><img src="offline/files.png"></a>
+    <a href="teams.php" class="quick-icon <?= $page=='teams.php' ? 'active' : '' ?>"><img src="offline/group.png"></a>
+    <a href="editor.php" class="quick-icon <?= $page=='editor.php' ? 'active' : '' ?>"><img src="offline/code.png"></a>
+    <a href="user_details.php" class="quick-icon <?= $page=='user_details.php' ? 'active' : '' ?>"><img src="offline/person.png"></a>
+</div>
+<?php endif; ?>
     <div class="actions">
       <div class="actions">
 
@@ -85,6 +95,11 @@ $page = basename($_SERVER['PHP_SELF']);
 window.onload = () => showTick("Login successful ");
 </script>
 <?php unset($_SESSION["login_success"]); endif; ?>
+<?php if(isset($_GET['success'])): ?>
+<script>
+window.onload = () => showTick("Feedback submitted");
+</script>
+<?php endif; ?>
  <section class="section hero">
     <p class="subtitle">A MODERN WEB TOOL</p>
     <h1 class="logo">Front<span>Forge</span></h1>

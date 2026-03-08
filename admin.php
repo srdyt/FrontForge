@@ -1,6 +1,10 @@
 <?php
-$conn = new mysqli("localhost","phpuser","FrontForge@123","frontforge");
+$host = "sql305.infinityfree.com";
+$username = "if0_41253895";
+$password = "NOPE";
+$database = "if0_41253895_frontforge";
 
+$conn = new mysqli($host, $username, $password, $database);
 $username = "admin";
 $password = password_hash("admin123", PASSWORD_DEFAULT);
 

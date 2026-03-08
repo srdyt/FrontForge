@@ -14,7 +14,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($password !== $confirm) {
         $error = "Passwords do not match";
-    } else {
+    }
+    else {
 
         // check duplicate username/email
         $stmt = $conn->prepare(
@@ -26,7 +27,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         if ($stmt->num_rows > 0) {
             $error = "Username or Email already exists";
-        } else {
+        }
+        else {
 
             $hashed = password_hash($password, PASSWORD_DEFAULT);
 
@@ -38,7 +40,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 $success = "Registration successful! You can login now.";
-            } else {
+            }
+            else {
                 $error = "Database error: " . $conn->error;
             }
         }
@@ -47,54 +50,61 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Register</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body class="auth-page">
-<h1 class="logo">Front<span>Forge</span></h1>
-<div class="auth-container">
 
-<?php if ($error): ?>
-    <p style="color:red;"><?php echo $error; ?></p>
-<?php endif; ?>
+    <h1 class="logo">Front<span>Forge</span></h1>
 
-<?php if ($success): ?>
-    <p style="color:lime;"><?php echo $success; ?></p>
-<?php endif; ?>
+    <div class="auth-container">
 
-<form method="POST" class="auth-form">
+        <?php if ($error): ?>
+        <p style="color:red;">
+            <?php echo $error; ?>
+        </p>
+        <?php
+endif; ?>
 
-<input name="name" placeholder="Full Name"
-       value="<?php echo $_POST['name'] ?? ''; ?>"
-       required class="auth-input" autocomplete="off">
+        <?php if ($success): ?>
+        <p style="color:lime;">
+            <?php echo $success; ?>
+        </p>
+        <?php
+endif; ?>
 
-<input name="username" placeholder="Username"
-       value="<?php echo $_POST['username'] ?? ''; ?>"
-       required class="auth-input" autocomplete="off">
+        <form method="POST" class="auth-form">
 
-<input name="email" placeholder="Email"
-       value="<?php echo $_POST['email'] ?? ''; ?>"
-       required class="auth-input" autocomplete="off">
+            <input name="name" placeholder="Full Name" value="<?php echo $_POST['name'] ?? ''; ?>" required
+                class="auth-input" autocomplete="off">
 
-<input name="password" type="password"
-       placeholder="Password" required class="auth-input" autocomplete="off">
+            <input name="username" placeholder="Username" value="<?php echo $_POST['username'] ?? ''; ?>" required
+                class="auth-input" autocomplete="off">
 
-<input name="confirm_password" type="password"
-       placeholder="Confirm Password" required class="auth-input" autocomplete="off">
+            <input name="email" placeholder="Email" value="<?php echo $_POST['email'] ?? ''; ?>" required
+                class="auth-input" autocomplete="off">
 
-<button class="auth-button">Register</button>
+            <input name="password" type="password" placeholder="Password" required class="auth-input"
+                autocomplete="off">
 
-</form>
+            <input name="confirm_password" type="password" placeholder="Confirm Password" required class="auth-input"
+                autocomplete="off">
 
-</div>
-<div class="auth-links">
-<a href="login.php" class="auth-link">
-Already have an account? Login!
-</a>
-</div>
+            <button class="auth-button">Register</button>
 
+        </form>
+
+    </div>
+
+    <div class="auth-links">
+        <a href="login.php" class="auth-link">
+            Already have an account? Login!
+        </a>
+    </div>
 
 </body>
+
 </html>
